@@ -4,6 +4,79 @@
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: #888888;
+}
+
+button:hover {
+  background: #34495E;
+}
+
 .App {
   text-align: center;
+}
+
+.body-input {
+  width: 35%;
+  padding-left: 10px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.body-btn-container {
+  margin-top: 10px;
+}
+
+.body-btn {
+  height: 40px;
+  width: 100px;
+  margin-right: 4px
+}
+
+.body-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.worker-order-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-order-card {
+  margin: 10px;
+  height: 40vh;
+  width: 310px;
+  background: #34495E;
+  box-shadow: 5px 7px rgb(34, 39, 44);
+  border-radius: 5px;
+}
+
+.work-order-img-container {
+  display: flex;
+  padding: 10px 0 0 10px;
+  width: 100%;
+}
+
+.work-order-img {
+  border-radius: 50%;
+  height: 100px;
+}
+
+.work-order-worker-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.work-order-worker-date {
+  text-align: right;
+  padding-right: 10px;
 }

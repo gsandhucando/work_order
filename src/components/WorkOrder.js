@@ -1,23 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import env from '../env.json'
+import React from 'react';
 
-const WorkOrder = ({workerId, name, description, deadline, id, savedWork}) => {
-  let [worker, setWorker] = useState({})
-// console.log(workerId)
-
-useEffect(() => {
-  axios.get(`${env.API_URL}/assessment/workers/${workerId}`)
-  .then(response => {
-    setWorker(response.data.worker)
-    //the state we want to change is in body but we need to keep track of all the workers so we use the hash table in the body it passes the information back
-    savedWork(response.data.worker.name, response.data.worker.id)
-  })
-  .catch(err => {
-    console.log(err)
-    //do same as body
-  })
-}, [])
+const WorkOrder = ({name, description, deadline, worker}) => {
 
   let styles = {
     workOrderContainer: {
@@ -33,29 +16,29 @@ useEffect(() => {
 
   }
 
-  let {email, companyName, image} = worker
-  let worker_name = worker.name
-  let formatedDate = new Date(deadline)
+  const {email, companyName, image} = worker
+  const worker_name = worker.name
+  const formatedDate = new Date(deadline)
 
 
   return(
-    <div style={styles.workOrderContainer}>
-      <div style={styles.wordOrderCard}>
+    <div className="worker-order-container">
+      <div className="work-order-card">
       <div>
       <h3>{name}</h3>
       <h5>{description}</h5>
       </div>
       <div>
-        <div style={{display: 'flex', padding: '10px 0 0 10px'}}>
-          <img style={{borderRadius: '50%', height: 100}} src={image} />
-          <div>
+        <div className='work-order-img-container' >
+          <img className='work-order-img' src={image} alt='worker' />
+          <div className="work-order-worker-info">
             <p>{worker_name}</p>
             <p>{companyName}</p>
             <p>{email}</p>
           </div>
         </div>
       </div>
-      <div style={{textAlign: 'right'}}>
+      <div className='work-order-worker-date'>
       {`${formatedDate.getMonth()}/${formatedDate.getDate()}/${formatedDate.getFullYear()} ${formatedDate.toLocaleTimeString('en-US')}`}
       </div>
       </div>
