@@ -2,20 +2,6 @@ import React from 'react';
 
 const WorkOrder = ({name, description, deadline, worker}) => {
 
-  let styles = {
-    workOrderContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    wordOrderCard: {
-      margin: 10,
-      height: '40vh',
-      width: '40vw',
-      background: 'aqua',
-    },
-
-  }
-
   const {email, companyName, image} = worker
   const worker_name = worker.name
   const formatedDate = new Date(deadline)

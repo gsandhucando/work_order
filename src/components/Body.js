@@ -15,6 +15,7 @@ function Header() {
     //call the work orders
     axios.get(`${env.API_URL}/assessment/work_orders`)
       .then(res => {
+        console.log(res.data.orders)
         setErrorMessage('')
         //set workorders
         setWorkOrders(res.data.orders)
@@ -24,10 +25,12 @@ function Header() {
         const workerTracker = new Set();
         let allWorkers = [];
         res.data.orders.forEach(order => {
+          console.log(workerTracker)
           if (!workerTracker.has(order.workerId)) {
             workerTracker.add(order.workerId);
             const req = axios.get(`${env.API_URL}/assessment/workers/${order.workerId}`)
             .then(res => {
+              console.log(res.data.worker)
               return res.data.worker
             });
             allWorkers.push(req)
@@ -78,13 +81,6 @@ function Header() {
     setWorkOrders(sortedWorkOrder)
   }
 
-  // function savedWork(workerName, worker_id) {
-  //   //created object copy hash table that takes in the workers key = name and value = id
-  //   const newWorkerName = workerName.replace(' ', '').toLowerCase().trim();
-  //   const newSavedWorkers = { ...savedWorkers, [newWorkerName]: worker_id }
-  //   console.log(newSavedWorkers, 'in saved work')
-  //   setSavedWorkers.call(this, newSavedWorkers)
-  // }
   return (
     <div>
       {/* set error message remember to setErrorMessage to '' if good request */}
@@ -96,7 +92,7 @@ function Header() {
       <div className="body-card-container">
         {workOrders.map(order => {
           const worker = workers.find(worker => order.workerId === worker.id);
-          console.log(worker);
+          // console.log(worker);
           return worker ? <WorkOrder key={order.id} {...order} worker={worker} /> : null
         })
         }
